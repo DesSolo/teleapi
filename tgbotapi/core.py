@@ -1,4 +1,5 @@
 import requests
+import os
 
 
 class Base(object):
@@ -15,9 +16,8 @@ class Base(object):
     def settings(self, value):
         self._settings = value
 
-    def _post(self, data, url):
-        data.pop('self')
-        return requests.post(self.url + url, json=data, **self.settings)
+    def _post(self, data, url, **kwargs):
+        return requests.post(self.url + url, data=data, files=kwargs.get('files'), **self.settings)
 
 
 class TgBot(Base):
@@ -26,3 +26,10 @@ class TgBot(Base):
 
     def forward_message(self, chat_id, from_chat_id, message_id, **kwargs):
         return self._post(locals(), 'forwardMessage')
+
+    def send_photo(self, chat_id, photo, **kwargs):
+        if not os.path.isfile(photo):
+            return self._post(locals(), 'sendPhoto')
+        with open(photo, 'rb') as ph:
+            photo = ph.read()
+        return self._post({'chat_id': chat_id, **kwargs}, 'sendPhoto', files={"photo": photo})
