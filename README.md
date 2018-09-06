@@ -9,5 +9,4 @@ git clone https://github.com/DesSolo/TeleBotProxy.git
 cd TeleBotProxy
 cp -r tgbotapi $YOUR_PROJECT_DIR
 ```
-<br> 
-More see [example.py](https://github.com/DesSolo/TeleBotProxy/blob/master/example.py)
+<br>More [example.py](https://github.com/DesSolo/TeleBotProxy/blob/master/example.py)
