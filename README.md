@@ -1,12 +1,20 @@
-**Easy telegram bot**
-<br>
-[Official Telegram api](https://core.telegram.org/bots/api)
-<br>
-Usage:
+teleapi
+======
+Easy telegram API  
+*See official telegram api [documentation](https://core.telegram.org/bots/api)*
+
+### Install
+`pip install teleapi`
+
+### Usage
 ```
-pip install requests
-git clone https://github.com/DesSolo/TeleBotProxy.git
-cd TeleBotProxy
-cp -r tgbotapi $YOUR_PROJECT_DIR
+from teleapi import TelegramApi
+
+BOT_TOKEN = 'TOKEN'
+CHAT_ID = 'example_chat_id'
+PROXY = {'https': 'soks5h://USERNAME:PASSWORD@IP:PORT'}
+
+telegram_api = TelegramApi(BOT_TOKEN, proxy=PROXY)
+telegram_api.send_message(CHAT_ID, 'Hello world!')
 ```
-<br>More [example.py](https://github.com/DesSolo/TeleBotProxy/blob/master/example.py)
+More [examples](https://github.com/DesSolo/TeleBotProxy/blob/master/example.py)
