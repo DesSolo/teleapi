@@ -7,14 +7,14 @@ class TelegramApi:
         """
         :param token: telegram token
         :param proxy: proxy param:
-                {'https': 'socks5://ip:port'}
-                {'https': 'socks5h://ip:port'}
-                {'https': 'http://user:pass@ip@port'}
+                'socks5://ip:port'
+                'socks5h://ip:port'
+                'http://user:pass@ip:port'
         """
         self.url = f'https://api.telegram.org/bot{token}/'
         self.session = requests.Session()
         if proxy:
-            self.session.proxies = proxy
+            self.session.proxies = {'https': proxy}
 
     def raw(self, method, uri, params=None, data=None, files=None):
         """
