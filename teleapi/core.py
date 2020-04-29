@@ -65,6 +65,12 @@ class TelegramApi:
         data.update(chat_id=chat_id, **kwargs)
         return self.raw('post', 'sendPhoto', data=data, files=files)
 
+    def send_audio(self, chat_id, audio, **kwargs):
+        """https://core.telegram.org/bots/api#sendaudio"""
+        data, files = input_file_or_string(audio=audio)
+        data.update(chat_id=chat_id, **kwargs)
+        return self.raw('post', 'sendAudio', data=data)
+
     def send_document(self, chat_id, document, **kwargs):
         """https://core.telegram.org/bots/api#senddocument"""
         data, files = input_file_or_string(document=document)
@@ -82,3 +88,15 @@ class TelegramApi:
         data, files = input_file_or_string(animation=animation)
         data.update(chat_id=chat_id, **kwargs)
         return self.raw('post', 'sendAnimation', data=data, files=files)
+
+    def send_voice(self, chat_id, voice, **kwargs):
+        """https://core.telegram.org/bots/api#sendvoice"""
+        data, files = input_file_or_string(voice=voice)
+        data.update(chat_id=chat_id, **kwargs)
+        return self.raw('post', 'sendVoice', data=data, files=files)
+
+    def send_video_note(self, chat_id, video_note, **kwargs):
+        """https://core.telegram.org/bots/api#sendvideonote"""
+        data, files = input_file_or_string(video_note=video_note)
+        data.update(chat_id=chat_id, **kwargs)
+        return self.raw('post', 'sendVideoNote', data=data, files=files)
