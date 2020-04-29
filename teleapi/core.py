@@ -2,6 +2,18 @@ import os
 import requests
 
 
+def input_file_or_string(**kwargs):
+    data = {}
+    files = {}
+    for key, value in kwargs.items():
+        if not os.path.isfile(value):
+            data[key] = value
+        else:
+            with open(value, 'rb') as file:
+                files[key] = file.read()
+    return data, files
+
+
 class TelegramApi:
     def __init__(self, token, proxy=None):
         """
@@ -49,20 +61,12 @@ class TelegramApi:
 
     def send_photo(self, chat_id, photo, **kwargs):
         """https://core.telegram.org/bots/api#sendphoto"""
-        if not os.path.isfile(photo):
-            data = {
-                'chat_id': chat_id,
-                'photo': photo,
-                **kwargs
-            }
-            return self.raw('post', 'sendPhoto', data=data)
-        with open(photo, 'rb') as file:
-            data = {
-                'chat_id': chat_id,
-                **kwargs
-            }
-            files = {
-                "photo": file.read()
-            }
-            return self.raw('post', 'sendPhoto', data=data, files=files)
+        data, files = input_file_or_string(photo=photo)
+        data.update(chat_id=chat_id, **kwargs)
+        return self.raw('post', 'sendPhoto', data=data, files=files)
 
+    def send_document(self, chat_id, document, **kwargs):
+        """https://core.telegram.org/bots/api#senddocument"""
+        data, files = input_file_or_string(document=document)
+        data.update(chat_id=chat_id, **kwargs)
+        return self.raw('post', 'sendDocument', data=data, files=files)
