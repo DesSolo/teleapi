@@ -26,6 +26,7 @@ jobs:
         pip install flake8 pytest
         pip install -e .
     - name: Lint with flake8
+      env:
         TOKEN: ${{ secrets.TOKEN }}
         CHAT_ID: ${{ secrets.CHAT_ID }}
         PROXY: ${{ secrets.PROXY }}
