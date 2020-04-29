@@ -1,8 +1,8 @@
 teleapi
 ======
-[![PyPI version](https://badge.fury.io/py/teleapi.svg)](https://badge.fury.io/py/teleapi)
-[![Python version](https://img.shields.io/pypi/pyversions/teleapi.svg)](https://pypi.python.org/pypi/teleapi)
-[![License](https://img.shields.io/pypi/l/teleapi.svg)](https://pypi.python.org/pypi/teleapi)
+![PyPI](https://img.shields.io/pypi/v/teleapi)
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/teleapi)
+![PyPI - License](https://img.shields.io/pypi/l/teleapi)
 
 Easy telegram API  
 *See official telegram api [documentation](https://core.telegram.org/bots/api)*
