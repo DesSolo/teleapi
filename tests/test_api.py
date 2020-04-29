@@ -12,25 +12,6 @@ def client():
     return TelegramApi(TOKEN, proxy=PROXY)
 
 
-def test_token():
-    api = TelegramApi(TOKEN)
-    assert api.url == f'https://api.telegram.org/bot{TOKEN}/'
-
-
-@pytest.mark.parametrize(
-    'proxy',
-    [
-        'https://example.com',
-        'http://example.com:443',
-        'socks5://example.com',
-        'socks5h://user@password:example.com'
-    ]
-)
-def test_proxies(proxy):
-    api = TelegramApi(TOKEN, proxy=proxy)
-    assert api.session.proxies['https'] == proxy
-
-
 def test_send_message(client):
     message = client.send_message(CHAT_ID, 'test')
     assert message.status_code == 200
