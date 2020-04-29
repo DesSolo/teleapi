@@ -70,3 +70,15 @@ class TelegramApi:
         data, files = input_file_or_string(document=document)
         data.update(chat_id=chat_id, **kwargs)
         return self.raw('post', 'sendDocument', data=data, files=files)
+
+    def send_video(self, chat_id, video, **kwargs):
+        """https://core.telegram.org/bots/api#sendvideo"""
+        data, files = input_file_or_string(video=video)
+        data.update(chat_id=chat_id, **kwargs)
+        return self.raw('post', 'sendVideo', data=data, files=files)
+
+    def send_animation(self, chat_id, animation, **kwargs):
+        """https://core.telegram.org/bots/api#sendvideo"""
+        data, files = input_file_or_string(animation=animation)
+        data.update(chat_id=chat_id, **kwargs)
+        return self.raw('post', 'sendAnimation', data=data, files=files)
