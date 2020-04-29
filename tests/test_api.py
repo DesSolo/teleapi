@@ -61,7 +61,7 @@ def test_send_photo_url(client):
 
 
 def test_send_photo_file(client):
-    message = client.send_photo(CHAT_ID, 'test_data/photo.png')
+    message = client.send_photo(CHAT_ID, 'tests/test_data/photo.png')
     assert message.status_code == 200
     assert message.json()['result']['message_id']
 
@@ -73,6 +73,6 @@ def test_send_document_url(client):
 
 
 def test_send_document_file(client):
-    message = client.send_document(CHAT_ID, 'test_data/photo.png')
+    message = client.send_document(CHAT_ID, 'tests/test_data/photo.png')
     assert message.status_code == 200
     assert message.json()['result']['message_id']
